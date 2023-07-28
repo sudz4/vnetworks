@@ -1,6 +1,11 @@
 from flask import Flask
-app = Flask(__name__) # crea's the an instance of the Flask class
+test_flask = Flask(__name__)
 
-@app.route("/") # maps the url route to the following function
+@test_flask.route("/") 
 def index():
     return "You don't know me son!"
+
+# this actually runs the app
+if __name__ == "__main__":
+    test_flask.run(debug=True)
+    # test_flask.run(debug=True, port=5001) # can try other ports if other processes are running on 5000
