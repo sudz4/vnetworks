@@ -24,12 +24,14 @@ def user_loader(username):
 def login():
     if request.method == 'GET':
         return render_template('login.html')
-    username = request.form['username']
-    if request.form['password'] == users[username]['password']:
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if username in users and users[username]['password'] == password:
         user = User()
         user.id = username
         login_user(user)
         return redirect(url_for('welcome'))
+
 
 @app.route('/welcome')
 @login_required
